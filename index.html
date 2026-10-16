@@ -3,115 +3,549 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="MathVerse 數學宇宙：數學公式、完整證明、國際數學競賽題庫與互動挑戰。">
 <title>MathVerse｜數學宇宙</title>
 <style>
-:root{--bg:#101321;--panel:#191e32;--panel2:#202741;--ink:#f5f6ff;--muted:#a8b0ca;--purple:#a99bff;--cyan:#73e4df;--line:#343c58;--good:#8de0b0;--bad:#ffaaa8}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#30345c 0,transparent 40%),var(--bg);color:var(--ink);font-family:system-ui,"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7}button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;width:calc(100% - 36px);margin:auto}
-header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.logo{font-size:21px;font-weight:900;letter-spacing:-1px}.logo b{color:var(--cyan)}nav{display:flex;gap:20px}nav a{color:var(--muted);text-decoration:none;font-size:14px}nav a:hover{color:var(--cyan)}
-.hero{padding:55px 0 32px;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:var(--cyan)}h1{font-size:clamp(38px,6vw,68px);line-height:1.15;letter-spacing:-3px;margin:12px 0}h1 span{color:var(--purple)}.lead{color:var(--muted);max-width:620px}.hero-art{border:1px solid #484c77;background:linear-gradient(135deg,#282d4b,#171c31);border-radius:25px;padding:25px;min-height:210px;display:grid;place-items:center;overflow:hidden}.equation{font-size:clamp(28px,4vw,48px);color:var(--cyan);text-align:center;font-weight:800}.equation small{display:block;font-size:13px;color:var(--muted);font-weight:500;margin-top:12px}
-.searchbar{display:flex;gap:10px;margin-top:25px}.searchbar input{flex:1;min-width:0;background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:14px 16px;border-radius:14px;outline:none}.searchbar input:focus{border-color:var(--cyan)}.btn{border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--ink);padding:10px 15px;font-weight:750}.btn.primary{background:var(--purple);color:#15152b;border-color:var(--purple)}.btn:hover{filter:brightness(1.12)}
-.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.chip{background:#242a42;border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:6px 12px;font-size:12px}.chip:hover{color:var(--cyan);border-color:var(--cyan)}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:15px auto 45px}.stat,.card{background:#191e32d9;border:1px solid var(--line);border-radius:18px;padding:18px}.stat strong{display:block;font-size:24px}.stat span{color:var(--muted);font-size:12px}
-section{scroll-margin-top:20px;margin:38px auto 55px}.heading{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:20px}.heading h2{font-size:30px;letter-spacing:-1px;margin:5px 0}.heading p{color:var(--muted);font-size:14px;margin:0}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:17px}.filters .chip.active{background:var(--purple);border-color:var(--purple);color:#17162c}
-.formula-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.formula-card{background:var(--panel);border:1px solid var(--line);border-radius:19px;padding:19px;transition:.18s;display:flex;flex-direction:column;min-height:220px}.formula-card:hover{transform:translateY(-3px);border-color:#7770c2}.tag{font-size:11px;color:var(--cyan);font-weight:800}.formula-card h3{margin:9px 0;font-size:19px}.math{font-family:Georgia,"Times New Roman",serif;font-size:24px;color:var(--purple);background:#111629;border-radius:12px;padding:12px;text-align:center;margin:5px 0 12px;overflow-wrap:anywhere}.formula-card p{font-size:13px;color:var(--muted);margin:0 0 15px}.card-actions{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}.card-actions span{font-size:11px;color:var(--muted)}
-.detail{display:none;margin-top:18px;background:#151a2c;border:1px solid var(--line);border-radius:20px;padding:22px}.detail.open{display:block}.detail h3{margin-top:0}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.steps{padding-left:23px}.steps li{margin:10px 0;color:#d8dcf0}.example{background:#222944;border-radius:14px;padding:16px}.answer{color:var(--cyan);font-weight:800}.note{font-size:12px;color:var(--muted)}
-.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.game{background:linear-gradient(145deg,#202741,#171c30);border:1px solid var(--line);border-radius:21px;padding:23px}.game h3{margin:7px 0}.question{font-size:20px;font-weight:800;margin:18px 0}.options{display:grid;gap:9px}.option{background:#252c46;border:1px solid var(--line);border-radius:12px;color:var(--ink);padding:12px;text-align:left}.option:hover{border-color:var(--purple)}.option.correct{border-color:var(--good);background:#193b37}.option.wrong{border-color:var(--bad);background:#482832}.feedback{min-height:48px;font-size:13px;color:var(--muted);padding-top:9px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.score{font-size:13px;color:var(--muted)}
-.method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.method{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:18px}.method .icon{font-size:25px}.method h3{margin:8px 0}.method p{color:var(--muted);font-size:13px;margin:0}
-footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:12px}
-@media(max-width:800px){.hero{grid-template-columns:1fr}.formula-grid{grid-template-columns:repeat(2,1fr)}.method-grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}nav{gap:10px}nav a{font-size:12px}}
-@media(max-width:540px){nav a:nth-child(2),nav a:nth-child(3){display:none}.formula-grid,.game-grid,.detail-grid{grid-template-columns:1fr}.heading{align-items:start;flex-direction:column}.searchbar{flex-direction:column}.method-grid{grid-template-columns:1fr 1fr}.hero{padding-top:35px}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:20px}}
+:root {
+  --bg:#080d1b;--panel:#111a30;--panel2:#17223b;
+  --text:#edf2ff;--muted:#9eacc9;--line:#283653;
+  --purple:#a78bfa;--cyan:#67e8f9;--green:#86efac;
+  --orange:#fdba74;--pink:#f9a8d4;--radius:20px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+ margin:0;background:
+ radial-gradient(ellipse at 10% 0%,#292050 0,transparent 36%),
+ radial-gradient(ellipse at 90% 10%,#10394a 0,transparent 30%),var(--bg);
+ color:var(--text);font-family:Inter,"Noto Sans TC","Microsoft JhengHei",sans-serif;
+ line-height:1.7;
+}
+button,input,select{font:inherit}
+button{cursor:pointer}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{width:min(1180px,92%);margin:auto}
+header{
+ position:sticky;top:0;z-index:10;background:#080d1be8;
+ backdrop-filter:blur(16px);border-bottom:1px solid #283653;
+}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:13px 0}
+.brand{font-size:21px;font-weight:900;letter-spacing:-.5px}
+.brand span{color:var(--cyan)}
+nav{display:flex;gap:17px;flex-wrap:wrap}
+nav a{color:var(--muted);font-size:13px}
+.hero{padding:68px 0 35px}
+.eyebrow{color:var(--cyan);font-size:12px;font-weight:800;letter-spacing:2px}
+h1{font-size:clamp(38px,7vw,72px);line-height:1.12;letter-spacing:-2px;margin:13px 0}
+.gradient{background:linear-gradient(100deg,#fff,#a78bfa 45%,#67e8f9);color:transparent;background-clip:text}
+.lead{color:var(--muted);max-width:720px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin:25px 0}
+.btn{border:1px solid var(--line);border-radius:12px;padding:10px 16px;color:var(--text);background:#19243b;font-weight:700}
+.btn.primary{background:linear-gradient(110deg,#8b5cf6,#0891b2);border:0}
+.btn:hover{filter:brightness(1.15)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:28px 0}
+.stat,.card,.panel,.game{
+ background:linear-gradient(145deg,#141d33,#0e1729);
+ border:1px solid var(--line);border-radius:var(--radius);padding:19px;
+}
+.stat strong{font-size:25px;display:block}
+.stat span{color:var(--muted);font-size:12px}
+section{padding:30px 0;scroll-margin-top:80px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:19px}
+h2{font-size:clamp(25px,4vw,35px);line-height:1.3;margin:4px 0}
+h3{margin:5px 0 10px;font-size:18px}
+.muted{color:var(--muted)}
+.small{font-size:12px}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}
+input,select{
+ color:var(--text);background:#0a1224;border:1px solid var(--line);
+ border-radius:11px;padding:11px 13px;min-width:0;
+}
+input:focus,select:focus{outline:2px solid #8b5cf6}
+.search{flex:1;min-width:220px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.card{display:flex;flex-direction:column;gap:9px;min-width:0}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card .push{margin-top:auto;padding-top:8px}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:11px;color:var(--cyan);background:#153043;padding:3px 9px;border-radius:30px}
+.tag.purple{color:#d8b4fe;background:#30224b}
+.tag.orange{color:var(--orange);background:#3a2b20}
+.formula{font-size:23px;font-weight:800;color:#e9d5ff;letter-spacing:.2px;overflow-wrap:anywhere}
+.empty{grid-column:1/-1;text-align:center;padding:35px;color:var(--muted)}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{border:1px solid var(--line);border-radius:30px;padding:7px 13px;background:#111a30;color:var(--muted)}
+.pill.active{background:#39245b;border-color:#a78bfa;color:white}
+.proof-step{border-left:2px solid #8b5cf6;padding:5px 0 7px 14px;margin:9px 0}
+.answer{border:1px solid #28564f;background:#102b2b;border-radius:12px;padding:14px}
+.question-title{font-size:19px;font-weight:800}
+.options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0}
+.option{text-align:left;background:#111a30;color:var(--text);border:1px solid var(--line);border-radius:12px;padding:12px}
+.option:hover{border-color:var(--purple)}
+.option:disabled{cursor:default;opacity:.8}
+.option.correct{border-color:#4ade80;background:#12352b}
+.option.wrong{border-color:#fb7185;background:#3c1929}
+.feedback{margin-top:12px}
+details{border:1px solid var(--line);border-radius:12px;padding:12px;margin-top:9px}
+summary{cursor:pointer;font-weight:700}
+details p{margin:10px 0 0}
+.official{border-color:#3c4266}
+footer{border-top:1px solid var(--line);padding:28px 0 45px;color:var(--muted);font-size:12px;margin-top:40px}
+.hidden{display:none!important}
+hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#202d49;padding:10px 16px;border:1px solid var(--line);border-radius:12px;display:none;z-index:20}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}nav{gap:10px}}
+@media(max-width:580px){
+ .grid,.grid.two{grid-template-columns:1fr}
+ .stats{gap:7px}.stat{padding:12px}.stat strong{font-size:21px}
+ .hero{padding-top:45px}nav{display:none}.options{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
-<header class="wrap">
-  <a class="logo" href="#" style="color:inherit;text-decoration:none">✳ Math<b>Verse</b></a>
-  <nav><a href="#formulas">公式圖鑑</a><a href="#proof">證明方法</a><a href="#games">數學遊戲</a></nav>
+<header>
+ <div class="wrap nav">
+  <a class="brand" href="#" style="color:var(--text)">Math<span>Verse</span> ✦</a>
+  <nav>
+   <a href="#formulas">公式百科</a><a href="#problems">競賽題庫</a>
+   <a href="#official">官方題庫</a><a href="#games">互動遊戲</a>
+  </nav>
+ </div>
 </header>
-<main>
-<div class="wrap hero">
-  <div>
-    <div class="eyebrow">LEARN · EXPLORE · MASTER</div>
-    <h1>讓數學公式<br>不再是<span>天書。</span></h1>
-    <p class="lead">搜尋公式、理解推導、練習例題。把抽象數學拆成清楚的小步驟，再用遊戲把它記起來。</p>
-    <div class="searchbar"><input id="search" placeholder="試試：畢氏定理、二次方程式、面積…" aria-label="搜尋公式"><button class="btn primary" id="searchBtn">搜尋公式 ↗</button></div>
-    <div class="quick"><button class="chip" data-q="畢氏">畢氏定理</button><button class="chip" data-q="二次">二次方程式</button><button class="chip" data-q="圓">圓的面積</button><button class="chip" data-q="機率">機率</button></div>
-  </div>
-  <div class="hero-art"><div class="equation">a² + b² = c²<small>一條公式，打開一個新世界。<br>探索數學背後的理由。</small><div style="font-size:13px;color:#b9b7ff;margin-top:24px">∑　√　π　∞　△</div></div></div>
-</div>
-<div class="wrap stats"><div class="stat"><strong id="total">0</strong><span>可查詢公式</span></div><div class="stat"><strong>4 種</strong><span>常見證明方法</span></div><div class="stat"><strong>即時</strong><span>例題與解答</span></div><div class="stat"><strong>闖關制</strong><span>練習你的數學直覺</span></div></div>
 
-<section class="wrap" id="formulas">
-  <div class="heading"><div><div class="eyebrow">01 / FORMULA LIBRARY</div><h2>公式探索圖鑑</h2><p>搜尋公式名稱、分類或用途，點開卡片查看例題與推導。</p></div></div>
-  <div class="filters" id="filters"></div>
-  <div class="formula-grid" id="formulaGrid"></div>
-  <div class="detail" id="detail"><div class="row"><div><div class="eyebrow">FORMULA DEEP DIVE</div><h2 id="detailTitle"></h2></div><button class="btn" id="closeDetail">關閉 ×</button></div><div class="math" id="detailMath"></div><p id="detailUse"></p><div class="detail-grid"><div><h3>🧠 推導／證明思路</h3><ol class="steps" id="detailSteps"></ol></div><div class="example"><h3>✏️ 例題練習</h3><p id="exampleQ"></p><button class="btn" id="showAnswer">顯示解答</button><p class="answer" id="exampleA" hidden></p><p class="note" id="exampleNote"></p></div></div></div>
+<main class="wrap">
+<section class="hero">
+ <div class="eyebrow">EXPLORE · UNDERSTAND · PROVE</div>
+ <h1>讓數學成為一場<br><span class="gradient">探索宇宙的冒險</span></h1>
+ <p class="lead">從國小數感到國際奧林匹亞，探索公式背後的原理，挑戰有趣的數學問題，並學會一步一步寫出完整證明。</p>
+ <div class="hero-actions">
+  <a class="btn primary" href="#problems">開始挑戰 →</a>
+  <a class="btn" href="#formulas">探索數學公式</a>
+ </div>
+ <div class="stats">
+  <div class="stat"><strong id="formulaCount">0</strong><span>公式知識卡</span></div>
+  <div class="stat"><strong id="problemCount">0</strong><span>內建練習題</span></div>
+  <div class="stat"><strong id="scoreDisplay">0</strong><span>累積答對題數</span></div>
+ </div>
+ <p class="small muted">題庫以內建仿競賽題及官方題庫連結為主；官方原題請至主辦單位網站查閱。</p>
 </section>
 
-<section class="wrap" id="proof">
-  <div class="heading"><div><div class="eyebrow">02 / HOW TO PROVE</div><h2>證明方法工具箱</h2><p>證明不是猜答案，而是把每個理由連接起來。</p></div></div>
-  <div class="method-grid">
-    <article class="method"><div class="icon">➡️</div><h3>直接證明</h3><p>從已知條件出發，依定義與定理一步步推到結論。</p></article>
-    <article class="method"><div class="icon">↩️</div><h3>反證法</h3><p>先假設結論不成立，再推出矛盾，證明原結論成立。</p></article>
-    <article class="method"><div class="icon">🧩</div><h3>數學歸納法</h3><p>先證明起始情況，再證明 n 成立會推出 n+1 成立。</p></article>
-    <article class="method"><div class="icon">📐</div><h3>幾何證明</h3><p>利用圖形性質、全等、相似或面積關係建立推理。</p></article>
-  </div>
+<section id="formulas">
+ <div class="section-head">
+  <div><div class="eyebrow">FORMULA LIBRARY</div><h2>公式百科</h2><div class="muted">不只背公式，也理解它為什麼成立。</div></div>
+ </div>
+ <div class="toolbar">
+  <input class="search" id="formulaSearch" placeholder="搜尋公式、用途或關鍵字……">
+  <select id="formulaCategory">
+   <option value="全部">全部主題</option><option>算術</option><option>代數</option>
+   <option>幾何</option><option>數列</option><option>機率</option><option>數論</option>
+  </select>
+ </div>
+ <div class="grid" id="formulaGrid"></div>
 </section>
 
-<section class="wrap" id="games">
-  <div class="heading"><div><div class="eyebrow">03 / MATH ARCADE</div><h2>數學遊戲廳</h2><p>選答案、看解析、累積分數。答錯也能學會一個理由。</p></div></div>
-  <div class="game-grid">
-    <article class="game"><div class="eyebrow">GAME 01 · QUICK QUIZ</div><h3>公式快問快答</h3><div class="question" id="question"></div><div class="options" id="options"></div><div class="feedback" id="feedback" aria-live="polite"></div><div class="row"><span class="score" id="quizScore">答對 0 題</span><button class="btn primary" id="next">下一題 →</button></div></article>
-    <article class="game"><div class="eyebrow">GAME 02 · NUMBER QUEST</div><h3>心算挑戰</h3><p class="note">挑戰四則運算，答對得分，練習數字敏感度。</p><div class="question" id="mentalQ">12 × 8 = ?</div><div class="searchbar"><input id="mentalInput" type="number" placeholder="輸入答案"><button class="btn primary" id="checkMental">確認</button></div><div class="feedback" id="mentalFeedback"></div><div class="row"><span class="score" id="mentalScore">連續答對：0</span><button class="btn" id="newMental">換一題 ↻</button></div></article>
+<section id="problems">
+ <div class="section-head">
+  <div><div class="eyebrow">COMPETITION LAB</div><h2>國際競賽題庫</h2><div class="muted">每題都附有解題思路、逐步解答與證明。</div></div>
+ </div>
+ <div class="toolbar">
+  <input class="search" id="problemSearch" placeholder="搜尋題目、概念或競賽……">
+  <select id="problemLevel">
+   <option value="全部">全部程度</option><option>國小</option><option>國中</option><option>高中</option><option>進階</option>
+  </select>
+  <select id="problemTopic">
+   <option value="全部">全部主題</option><option>算術</option><option>代數</option><option>幾何</option><option>數論</option><option>組合</option><option>機率</option>
+  </select>
+  <select id="problemSource">
+   <option value="全部">全部來源</option><option value="仿競賽題">仿競賽題</option><option value="官方資源">官方資源</option>
+  </select>
+ </div>
+ <div class="pills" id="topicPills">
+  <button class="pill active" data-topic="全部">全部題目</button>
+  <button class="pill" data-topic="算術">算術</button>
+  <button class="pill" data-topic="代數">代數</button>
+  <button class="pill" data-topic="幾何">幾何</button>
+  <button class="pill" data-topic="數論">數論</button>
+  <button class="pill" data-topic="組合">組合</button>
+ </div>
+ <div class="grid" id="problemGrid" style="margin-top:15px"></div>
+ <div id="problemDetail" class="panel hidden" style="margin-top:18px"></div>
+</section>
+
+<section id="official">
+ <div class="section-head">
+  <div><div class="eyebrow">ORIGINAL SOURCES</div><h2>官方歷屆題庫</h2><div class="muted">前往主辦單位網站查看原題、年份與官方解答。</div></div>
+ </div>
+ <div class="grid" id="officialGrid"></div>
+ <p class="small muted">注意：官方網站的可用語言、題目年份、下載格式及使用條款可能不同。外部網站內容不由 MathVerse 控制。</p>
+</section>
+
+<section id="games">
+ <div class="section-head">
+  <div><div class="eyebrow">PLAY & LEARN</div><h2>數學遊戲場</h2><div class="muted">透過作答與推理練習，把數學概念變成自己的能力。</div></div>
+ </div>
+ <div class="grid two">
+  <div class="game">
+   <div class="tags"><span class="tag purple">QUIZ</span><span class="tag">隨機挑戰</span></div>
+   <h3>競賽快問快答</h3>
+   <p class="muted">從內建題庫抽題。答對可累積分數，答錯也能查看解析。</p>
+   <hr>
+   <div class="small muted" id="quizProgress">準備開始</div>
+   <div class="question-title" id="quizQuestion">按下開始，挑戰第一題！</div>
+   <div class="options" id="quizOptions"></div>
+   <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+   <button class="btn primary" id="quizStart">開始挑戰</button>
+   <button class="btn hidden" id="quizNext">下一題 →</button>
   </div>
+  <div class="game">
+   <div class="tags"><span class="tag orange">MENTAL MATH</span><span class="tag">心算練習</span></div>
+   <h3>心算反應站</h3>
+   <p class="muted">練習四則運算、平方與簡單代數。</p>
+   <hr>
+   <div class="small muted">請算出答案</div>
+   <div class="question-title" id="mentalQuestion">按下「出題」開始</div>
+   <div class="toolbar"><input id="mentalAnswer" type="number" inputmode="decimal" placeholder="輸入答案" class="search"></div>
+   <div class="feedback" id="mentalFeedback" aria-live="polite"></div>
+   <button class="btn primary" id="mentalCheck">檢查答案</button>
+   <button class="btn" id="mentalNew">出新題</button>
+  </div>
+ </div>
+ <div class="panel" style="margin-top:14px">
+  <h3>學習紀錄</h3>
+  <p class="muted">本次瀏覽期間的統計。重新整理網頁後會重新計算。</p>
+  <div class="stats">
+   <div class="stat"><strong id="correctTotal">0</strong><span>答對題數</span></div>
+   <div class="stat"><strong id="attemptTotal">0</strong><span>作答次數</span></div>
+   <div class="stat"><strong id="accuracyTotal">0%</strong><span>答對率</span></div>
+  </div>
+  <button class="btn" id="resetStats">重設紀錄</button>
+ </div>
 </section>
 </main>
-<footer class="wrap">MathVerse · 數學宇宙｜此版本是可離線使用的入門示範，公式庫可以持續新增。正式學習與考試請核對課本、定義與適用條件。</footer>
-<script>
-const data=[
-{id:1,name:"畢氏定理",cat:"幾何",formula:"a² + b² = c²",desc:"直角三角形中，兩股長的平方和等於斜邊長的平方。",use:"適用於直角三角形；c 是斜邊，a、b 是兩股。",steps:["在直角三角形中，設兩股為 a、b，斜邊為 c。","把三邊分別作成正方形，其面積為 a²、b²、c²。","畢氏定理指出兩股上的正方形面積總和，等於斜邊上的正方形面積。","因此 a²+b²=c²。這裡展示的是定理結論與幾何直觀，完整證明可用拼圖面積法建立。"],q:"直角三角形的兩股長為 3 和 4，斜邊 c 是多少？",a:"c²=3²+4²=9+16=25，所以 c=5。",note:"長度取正值，因此答案是 5。"},
-{id:2,name:"二次方程式公式",cat:"代數",formula:"x = (−b ± √(b²−4ac)) / 2a",desc:"解 ax²+bx+c=0（a≠0）的通用公式。",use:"判別式 Δ=b²−4ac 可判斷實數根的數量。",steps:["從 ax²+bx+c=0 開始，且 a≠0。","兩邊除以 a，整理為 x²+(b/a)x=−c/a。","兩邊加上 (b/2a)²，完成平方。","整理為 (x+b/2a)²=(b²−4ac)/(4a²)。","開平方並移項，得到 x=(−b±√(b²−4ac))/(2a)。"],q:"解 x²−5x+6=0。",a:"a=1、b=−5、c=6。代入公式得 x=(5±√25−24)/2=(5±1)/2，所以 x=2 或 x=3。",note:"也可因式分解成 (x−2)(x−3)=0。"},
-{id:3,name:"圓的面積",cat:"幾何",formula:"A = πr²",desc:"半徑為 r 的圓，其面積等於 π 乘以半徑平方。",use:"r 是半徑，不是直徑；直徑 d=2r。",steps:["把圓切成許多細小扇形。","將扇形交錯排列，形狀逐漸接近平行四邊形。","底邊約為圓周的一半，即 πr；高約為 r。","面積約為底乘高，得到 πr×r=πr²。","扇形數量越多，近似越精確，極限即為圓面積公式。"],q:"半徑為 3 的圓，面積是多少？",a:"A=π×3²=9π，約為 28.27 平方單位。",note:"精確答案通常保留為 9π。"},
-{id:4,name:"長方形面積",cat:"幾何",formula:"A = 長 × 寬",desc:"長方形面積等於長邊與寬邊的乘積。",use:"長與寬須使用相同長度單位，面積單位要平方。",steps:["把長方形切成邊長為 1 的單位正方形。","每一排有「長」個單位正方形。","共有「寬」排。","總數為長×寬，因此 A=長×寬。"],q:"長 8 公分、寬 5 公分的長方形面積是多少？",a:"A=8×5=40 平方公分。",note:"周長是 2×(8+5)=26 公分，別和面積混淆。"},
-{id:5,name:"三角形面積",cat:"幾何",formula:"A = ½bh",desc:"底為 b、高為 h 的三角形，面積是底乘高的一半。",use:"高必須是到底邊的垂直距離。",steps:["取一個三角形，複製一個全等三角形。","將兩個三角形拼成底為 b、高為 h 的平行四邊形。","平行四邊形面積是 bh。","一個三角形占其中一半，所以 A=½bh。"],q:"底 10、高 6 的三角形面積是多少？",a:"A=½×10×6=30 平方單位。",note:"鈍角三角形的高可能落在底邊延長線上。"},
-{id:6,name:"一次函數",cat:"代數",formula:"y = mx + b",desc:"斜率為 m、y 截距為 b 的直線方程式。",use:"m 表示 x 每增加 1 時，y 的變化量；b 是 x=0 時的 y 值。",steps:["直線上兩點的斜率為 m=(y₂−y₁)/(x₂−x₁)。","直線的變化率固定，因此 y−y₁=m(x−x₁)。","展開並把常數合併，寫成 y=mx+b。"],q:"直線斜率為 2，且 y 截距為 3，寫出方程式。",a:"代入 y=mx+b，得到 y=2x+3。",note:"x 增加 1，y 就增加 2。"},
-{id:7,name:"平方差公式",cat:"代數",formula:"a² − b² = (a−b)(a+b)",desc:"兩個平方相減，可以分解成差與和的乘積。",use:"常用於因式分解、簡化算式。",steps:["展開右邊：(a−b)(a+b)。","使用分配律得到 a²+ab−ab−b²。","中間的 +ab 與 −ab 抵消。","結果是 a²−b²，因此等式成立。"],q:"分解 x²−25。",a:"x²−25=x²−5²=(x−5)(x+5)。",note:"平方和 a²+b² 通常不能在實數範圍內照此方式分解。"},
-{id:8,name:"等差數列第 n 項",cat:"數列",formula:"aₙ = a₁ + (n−1)d",desc:"每一項與前一項的差固定時，就是等差數列。",use:"a₁ 為首項，d 為公差，n 為項數。",steps:["第一項是 a₁。","第二項是 a₁+d；第三項是 a₁+2d。","每往後一項，就多加一次公差 d。","第 n 項在首項之後經過 n−1 次增加，所以 aₙ=a₁+(n−1)d。"],q:"首項 4、公差 3，第 10 項是多少？",a:"a₁₀=4+(10−1)×3=4+27=31。",note:"注意是 n−1 次，不是 n 次。"},
-{id:9,name:"等差級數和",cat:"數列",formula:"Sₙ = n(a₁+aₙ)/2",desc:"等差數列前 n 項的總和。",use:"已知首項、末項與項數時特別方便。",steps:["把總和正向寫成 S=a₁+a₂+…+aₙ。","反向寫成 S=aₙ+aₙ₋₁+…+a₁。","兩式相加，每一對都是 a₁+aₙ，共 n 對。","因此 2S=n(a₁+aₙ)，除以 2 得公式。"],q:"1+2+3+…+100 等於多少？",a:"S=100(1+100)/2=100×101/2=5050。",note:"這種配對方法也常用來理解高斯求和。"},
-{id:10,name:"機率",cat:"機率",formula:"P(A)=有利結果數／所有等可能結果數",desc:"當所有結果等可能時，以有利結果比例計算事件機率。",use:"此公式需要所有基本結果等可能；不等可能時需用其他方法。",steps:["列出所有可能的基本結果。","確認每個基本結果是否等可能。","數出符合事件 A 的結果數。","用有利結果數除以總結果數。"],q:"公平六面骰擲一次，擲出偶數的機率是多少？",a:"偶數是 2、4、6，共 3 個有利結果；總結果 6 個，所以 P=3/6=1/2。",note:"機率介於 0 與 1 之間。"},
-{id:11,name:"平均速度",cat:"生活數學",formula:"平均速度 = 總路程／總時間",desc:"整段行程的平均速度要用總路程除以總時間。",use:"單位例如公里／小時或公尺／秒。",steps:["把每段路程加起來，得到總路程。","把每段花費時間加起來，得到總時間。","用總路程除以總時間。","不能在不同路段速度不同時，直接對速度做普通平均。"],q:"走 12 公里花了 3 小時，平均速度是多少？",a:"平均速度=12÷3=4 公里／小時。",note:"請確認時間與距離單位一致。"},
-{id:12,name:"百分率",cat:"生活數學",formula:"百分率 = 部分／全體 × 100%",desc:"將部分占全體的比例轉成百分比。",use:"計算折扣、成績、成長率時常用。",steps:["找出部分與全體的數值。","用部分除以全體得到比例。","乘以 100%，換成百分率。"],q:"20 題答對 17 題，答對率是多少？",a:"17÷20×100%=85%。",note:"全體不能為 0。"}
-];
-const categories=["全部","代數","幾何","數列","機率","生活數學"];
-let active="全部",current=null,quizIndex=0,score=0,locked=false,streak=0,mentalAnswer=0;
-const $=id=>document.getElementById(id);
-$("total").textContent=data.length;
-function renderFilters(){$("filters").innerHTML=categories.map(c=>`<button class="chip ${c===active?"active":""}" data-cat="${c}">${c}</button>`).join("")}
-function renderCards(){const term=$("search").value.trim().toLowerCase();const found=data.filter(d=>(active==="全部"||d.cat===active)&&[d.name,d.cat,d.formula,d.desc,d.use].join(" ").toLowerCase().includes(term));$("formulaGrid").innerHTML=found.length?found.map(d=>`<article class="formula-card"><div class="tag">${d.cat.toUpperCase()} / FORMULA</div><h3>${d.name}</h3><div class="math">${d.formula}</div><p>${d.desc}</p><div class="card-actions"><span>含推導與例題</span><button class="btn" data-open="${d.id}">深入學習 ↗</button></div></article>`).join(""):`<div class="card" style="grid-column:1/-1">找不到相關公式。試試「面積」、「代數」或「數列」。</div>`}
-function openDetail(id){current=data.find(d=>d.id===id);$("detailTitle").textContent=current.name;$("detailMath").textContent=current.formula;$("detailUse").textContent="適用情境："+current.use;$("detailSteps").innerHTML=current.steps.map(s=>`<li>${s}</li>`).join("");$("exampleQ").textContent=current.q;$("exampleA").textContent=current.a;$("exampleA").hidden=true;$("showAnswer").textContent="顯示解答";$("exampleNote").textContent=current.note;$("detail").classList.add("open");$("detail").scrollIntoView({behavior:"smooth",block:"start"})}
-$("filters").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;active=b.dataset.cat;renderFilters();renderCards()});
-$("formulaGrid").addEventListener("click",e=>{const b=e.target.closest("[data-open]");if(b)openDetail(Number(b.dataset.open))});
-$("search").addEventListener("input",renderCards);$("searchBtn").onclick=renderCards;
-document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{$("search").value=b.dataset.q;active="全部";renderFilters();renderCards();$("formulas").scrollIntoView({behavior:"smooth"})});
-$("closeDetail").onclick=()=>$("detail").classList.remove("open");
-$("showAnswer").onclick=()=>{$("exampleA").hidden=!$("exampleA").hidden;$("showAnswer").textContent=$("exampleA").hidden?"顯示解答":"收起解答"};
 
-const quiz=[
-{q:"直角三角形兩股長為 6、8，斜邊長是多少？",o:["10","12","14","100"],a:0,why:"6²+8²=36+64=100，所以斜邊是 √100=10。"},
-{q:"圓的半徑是 4，面積為何？",o:["8π","16π","4π","16"],a:1,why:"A=πr²=π×4²=16π。"},
-{q:"x²−9 的因式分解是哪一個？",o:["(x−9)(x+1)","(x−3)²","(x−3)(x+3)","(x+9)(x−1)"],a:2,why:"這是平方差公式：x²−3²=(x−3)(x+3)。"},
-{q:"首項 2、公差 5，等差數列第 4 項是多少？",o:["12","17","22","7"],a:1,why:"a₄=2+(4−1)×5=17。"},
-{q:"公平骰子擲一次，擲出 6 的機率是多少？",o:["1/2","1/3","1/6","6"],a:2,why:"六個等可能結果中只有一個是 6，所以機率為 1/6。"},
-{q:"三角形底 12、高 5，面積是多少？",o:["60","30","17","34"],a:1,why:"A=½×12×5=30。"}
+<footer>
+ <div class="wrap">
+  <strong>MathVerse ✦ 數學宇宙</strong>
+  <p>以理解、推理與證明探索數學。題庫內容以教學目的編寫；官方競賽標誌、原題及解答的權利歸各主辦單位或權利人所有。</p>
+  <p>本網站為靜態學習示範，不代表任何競賽主辦單位，也不保證收錄所有歷屆題目。</p>
+ </div>
+</footer>
+<div id="toast" role="status"></div>
+
+<script>
+"use strict";
+
+/* =========================
+   公式知識庫
+   ========================= */
+const formulas = [
+ {id:"f1",name:"平方差公式",cat:"代數",formula:"a² − b² = (a − b)(a + b)",use:"快速因式分解兩個平方數的差。",proof:["將右邊展開： (a − b)(a + b)。","使用分配律，得到 a² + ab − ab − b²。","中間兩項互相抵消，結果是 a² − b²。"],example:"計算 51² − 49²。",answer:"(51 − 49)(51 + 49) = 2 × 100 = 200。"},
+ {id:"f2",name:"完全平方公式",cat:"代數",formula:"(a + b)² = a² + 2ab + b²",use:"展開括號、心算接近整數的平方。",proof:["(a + b)² = (a + b)(a + b)。","使用分配律：a² + ab + ab + b²。","合併同類項，得到 a² + 2ab + b²。"],example:"計算 103²。",answer:"(100 + 3)² = 10000 + 600 + 9 = 10609。"},
+ {id:"f3",name:"一元一次方程",cat:"代數",formula:"ax + b = c ⇒ x = (c − b) / a",use:"求解 a 不等於 0 的一元一次方程。",proof:["原式兩邊同時減去 b，得到 ax = c − b。","兩邊同時除以非零數 a。","得到 x = (c − b) / a。"],example:"解 3x + 5 = 20。",answer:"3x = 15，所以 x = 5。"},
+ {id:"f4",name:"等差數列第 n 項",cat:"數列",formula:"aₙ = a₁ + (n − 1)d",use:"首項為 a₁、公差為 d 時求第 n 項。",proof:["第一項是 a₁。","每往後一項就增加一次公差 d。","從第 1 項到第 n 項共增加 n − 1 次，因此 aₙ = a₁ + (n − 1)d。"],example:"首項 4、公差 3，求第 10 項。",answer:"a₁₀ = 4 + 9 × 3 = 31。"},
+ {id:"f5",name:"等差數列求和",cat:"數列",formula:"Sₙ = n(a₁ + aₙ) / 2",use:"求等差數列前 n 項總和。",proof:["正向寫出總和 S = a₁ + a₂ + … + aₙ。","反向寫出 S = aₙ + aₙ₋₁ + … + a₁。","逐項相加，每一組都是 a₁ + aₙ，共 n 組。","所以 2S = n(a₁ + aₙ)，得到公式。"],example:"計算 1 + 2 + … + 100。",answer:"S = 100 × (1 + 100) / 2 = 5050。"},
+ {id:"f6",name:"三角形內角和",cat:"幾何",formula:"A + B + C = 180°",use:"求三角形未知內角。",proof:["過三角形一個頂點畫出與對邊平行的直線。","利用平行線的內錯角相等，可在頂點旁找到另外兩個內角。","三個角構成一條直線，角度總和為 180°。"],example:"三角形兩角為 55°、65°，求第三角。",answer:"180° − 55° − 65° = 60°。"},
+ {id:"f7",name:"畢氏定理",cat:"幾何",formula:"a² + b² = c²",use:"求直角三角形斜邊或直角邊。",proof:["在直角三角形三邊上分別作正方形。","幾何拼補或面積比較可證明，兩個直角邊正方形面積之和等於斜邊正方形面積。","所以 a² + b² = c²。"],example:"直角邊為 6、8，求斜邊。",answer:"c² = 36 + 64 = 100，所以 c = 10。"},
+ {id:"f8",name:"長方形面積",cat:"幾何",formula:"A = lw",use:"長為 l、寬為 w 的長方形面積。",proof:["把長方形切成單位正方形。","每一排有 l 個單位，每列有 w 排。","總單位正方形數為 l × w，因此面積為 lw。"],example:"長 12、寬 7 的長方形面積。",answer:"12 × 7 = 84 平方單位。"},
+ {id:"f9",name:"平均速度",cat:"算術",formula:"速度 = 距離 / 時間",use:"在距離和時間已知時求平均速度。",proof:["速度的定義是每單位時間所走的距離。","總距離除以總時間，就得到整段行程的平均速度。"],example:"行走 15 公里共花 3 小時，平均速度是多少？",answer:"15 ÷ 3 = 5 公里／小時。"},
+ {id:"f10",name:"乘法原理",cat:"組合",formula:"總方法數 = m × n",use:"一個選擇有 m 種，另一個獨立選擇有 n 種。",proof:["先固定第一個選擇，共有 m 種。","每一種第一選擇，都可搭配 n 種第二選擇。","因此共有 m 組 n 種，總數為 mn。"],example:"3 件上衣與 4 條褲子，可搭配幾套？",answer:"3 × 4 = 12 套。"},
+ {id:"f11",name:"簡單機率",cat:"機率",formula:"P(A) = 有利結果數 / 等可能結果總數",use:"所有基本結果等可能時求事件機率。",proof:["將所有等可能基本結果列出。","其中有利於事件 A 的結果占所有結果的一部分。","因此機率等於有利結果數除以總結果數。"],example:"公平六面骰擲出偶數的機率。",answer:"有利結果為 2、4、6，共 3 個；機率為 3/6 = 1/2。"},
+ {id:"f12",name:"整數整除與餘數",cat:"數論",formula:"a = bq + r，0 ≤ r < b",use:"以非負餘數表示整數除法（b 為正整數）。",proof:["對任意整數 a 和正整數 b，整數除法定理保證存在整數 q、r。","可選取唯一的商 q，使餘數 r 落在 0 到 b − 1 之間。","因此 a = bq + r，且 0 ≤ r < b。"],example:"將 47 除以 6，寫出商與餘數。",answer:"47 = 6 × 7 + 5，所以商為 7，餘數為 5。"},
+ {id:"f13",name:"二次方程式公式",cat:"代數",formula:"x = (−b ± √(b² − 4ac)) / 2a",use:"解 ax² + bx + c = 0，其中 a ≠ 0。",proof:["兩邊除以 a，得到 x² + (b/a)x = −c/a。","兩邊加上 (b/2a)²，完成平方。","整理成 (x + b/2a)² = (b² − 4ac)/(4a²)。","開平方並整理，即得二次公式。"],example:"解 x² − 5x + 6 = 0。",answer:"(x − 2)(x − 3) = 0，因此 x = 2 或 x = 3。"},
+ {id:"f14",name:"圓的周長",cat:"幾何",formula:"C = 2πr = πd",use:"由半徑或直徑求圓周長。",proof:["圓周長與直徑的比值對所有圓都相同。","這個固定比值定義為 π。","因此 C = πd；因為 d = 2r，所以 C = 2πr。"],example:"半徑 5 的圓周長是多少？",answer:"C = 10π，約為 31.416。"},
+ {id:"f15",name:"平方數的奇偶性",cat:"數論",formula:"(2k)² = 4k²；(2k+1)² = 4k(k+1)+1",use:"證明整數平方的奇偶性與餘數性質。",proof:["偶數可寫成 2k，其平方為 4k²，是偶數。","奇數可寫成 2k + 1。","平方後為 4k² + 4k + 1 = 4k(k + 1) + 1，是奇數。"],example:"說明 37² 為何是奇數。",answer:"37 是奇數，奇數的平方仍為奇數；37² = 1369。"}
 ];
-function renderQuiz(){locked=false;const q=quiz[quizIndex];$("question").textContent=q.q;$("options").innerHTML=q.o.map((o,i)=>`<button class="option" data-answer="${i}">${"ABCD"[i]}　${o}</button>`).join("");$("feedback").textContent="選擇一個答案，查看推理。";$("quizScore").textContent=`答對 ${score} 題`}
-$("options").addEventListener("click",e=>{const b=e.target.closest("[data-answer]");if(!b||locked)return;locked=true;const i=Number(b.dataset.answer),q=quiz[quizIndex];document.querySelectorAll("[data-answer]").forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add("correct");else if(j===i)x.classList.add("wrong")});if(i===q.a){score++;$("feedback").textContent="答對了！"+q.why}else $("feedback").textContent="再看一次解析："+q.why;$("quizScore").textContent=`答對 ${score} 題`});
-$("next").onclick=()=>{if(!locked){$("feedback").textContent="先選一個答案再繼續！";return}quizIndex=(quizIndex+1)%quiz.length;if(quizIndex===0)score=0;renderQuiz()};
-function newMental(){const ops=["+","−","×"];const op=ops[Math.floor(Math.random()*ops.length)];let a,b;if(op==="+"){a=rand(10,80);b=rand(1,50);mentalAnswer=a+b}else if(op==="−"){a=rand(20,90);b=rand(1,a);mentalAnswer=a-b}else{a=rand(2,12);b=rand(2,12);mentalAnswer=a*b}$("mentalQ").textContent=`${a} ${op} ${b} = ?`;$("mentalInput").value="";$("mentalFeedback").textContent="";$("mentalInput").focus()}
-function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a}
-function checkMental(){if($("mentalInput").value===""){$("mentalFeedback").textContent="先輸入答案吧！";return}if(Number($("mentalInput").value)===mentalAnswer){streak++;$("mentalFeedback").textContent="正確！反應很棒 ✨"}else{streak=0;$("mentalFeedback").textContent=`再試著檢查運算。正確答案是 ${mentalAnswer}。`}$("mentalScore").textContent=`連續答對：${streak}`;newMental()}
-$("checkMental").onclick=checkMental;$("mentalInput").addEventListener("keydown",e=>{if(e.key==="Enter")checkMental()});$("newMental").onclick=newMental;
-renderFilters();renderCards();renderQuiz();newMental();
+
+/* =========================
+   自編仿競賽題庫
+   這些不是官方歷屆原題
+   ========================= */
+const problems = [
+ {id:"p1",title:"兩位數的反轉",level:"國小",topic:"算術",competition:"仿數學挑戰賽",difficulty:"入門",type:"仿競賽題",q:"一個兩位數的十位數比個位數大 2，且兩個數字相加為 10。這個數是多少？",options:["64","73","82","91"],correct:1,hint:"設個位數為 u，十位數就是 u + 2。",steps:["設個位數為 u，十位數為 u + 2。","兩個數字相加為 10，所以 u + (u + 2) = 10。","整理得 2u = 8，所以 u = 4。","十位數為 6，答案是 64。"],answer:"64",proof:"檢查：6 − 4 = 2，而且 6 + 4 = 10。因此 64 符合兩個條件。"},
+ {id:"p2",title:"數列找規律",level:"國小",topic:"算術",competition:"仿數學挑戰賽",difficulty:"入門",type:"仿競賽題",q:"數列 2、6、12、20、30、？ 下一項是多少？",options:["36","40","42","44"],correct:2,hint:"觀察每項是不是兩個連續整數的乘積。",steps:["各項可寫成 1×2、2×3、3×4、4×5、5×6。","第 n 項為 n(n + 1)。","下一項為 6×7 = 42。"],answer:"42",proof:"相鄰項的差依序為 4、6、8、10，下一個差為 12，因此 30 + 12 = 42。"},
+ {id:"p3",title:"長方形與正方形",level:"國小",topic:"幾何",competition:"仿數學袋鼠題型",difficulty:"入門",type:"仿競賽題",q:"周長 24 公分的正方形，面積是多少平方公分？",options:["24","30","36","48"],correct:2,hint:"先用周長除以 4 求邊長。",steps:["正方形四邊相等，邊長 = 24 ÷ 4 = 6。","面積 = 邊長 × 邊長。","面積 = 6 × 6 = 36。"],answer:"36 平方公分",proof:"四邊各為 6 公分，周長是 4×6 = 24 公分，面積則是 6² = 36 平方公分。"},
+ {id:"p4",title:"分數比較",level:"國小",topic:"算術",competition:"仿競賽題",difficulty:"入門",type:"仿競賽題",q:"下列哪個分數最大？",options:["3/5","5/8","2/3","7/12"],correct:2,hint:"可以通分，也可以將分數換成小數比較。",steps:["3/5 = 0.6。","5/8 = 0.625。","2/3 約為 0.667。","7/12 約為 0.583，所以最大的是 2/3。"],answer:"2/3",proof:"以分母 120 通分：72/120、75/120、80/120、70/120。最大分子是 80，所以 2/3 最大。"},
+ {id:"p5",title:"年齡問題",level:"國中",topic:"代數",competition:"仿數學挑戰賽",difficulty:"基礎",type:"仿競賽題",q:"父親現在的年齡是孩子的 3 倍，12 年後父親年齡會是孩子的 2 倍。孩子現在幾歲？",options:["10","12","14","16"],correct:1,hint:"設孩子現在 x 歲，父親就是 3x 歲。",steps:["孩子現在 x 歲，父親現在 3x 歲。","12 年後分別為 x + 12、3x + 12。","依題意：3x + 12 = 2(x + 12)。","3x + 12 = 2x + 24，所以 x = 12。"],answer:"12 歲",proof:"孩子現在 12 歲，父親 36 歲。12 年後為 24 歲與 48 歲，父親正好是孩子的 2 倍。"},
+ {id:"p6",title:"整除與餘數",level:"國中",topic:"數論",competition:"仿競賽題",difficulty:"基礎",type:"仿競賽題",q:"一個正整數除以 5 餘 2。這個數的平方除以 5，餘數是多少？",options:["0","1","2","4"],correct:3,hint:"把原數寫成 5k + 2，再平方。",steps:["設整數為 5k + 2。","平方得 (5k + 2)² = 25k² + 20k + 4。","前兩項都能被 5 整除。","因此餘數為 4。"],answer:"4",proof:"平方後為 5(5k² + 4k) + 4，括號內為整數，故除以 5 的餘數是 4。"},
+ {id:"p7",title:"三角形外角",level:"國中",topic:"幾何",competition:"仿競賽題",difficulty:"基礎",type:"仿競賽題",q:"三角形的兩個不相鄰內角為 35° 與 65°。與第三個內角相鄰的外角是多少？",options:["80°","90°","100°","110°"],correct:2,hint:"三角形外角等於兩個不相鄰內角之和。",steps:["外角定理指出，三角形的一個外角等於兩個不相鄰內角的和。","所以外角 = 35° + 65°。","答案為 100°。"],answer:"100°",proof:"第三個內角為 180° − 35° − 65° = 80°。相鄰外角為 180° − 80° = 100°。"},
+ {id:"p8",title:"連續整數的和",level:"國中",topic:"數論",competition:"仿競賽題",difficulty:"進階",type:"仿競賽題",q:"三個連續整數的和為 72。最大的整數是多少？",options:["23","24","25","26"],correct:2,hint:"將三數設為 n−1、n、n+1。",steps:["設三個連續整數為 n−1、n、n+1。","總和為 3n = 72。","所以 n = 24。","三數為 23、24、25，最大是 25。"],answer:"25",proof:"23 + 24 + 25 = 72，且三數連續，所以答案為 25。"},
+ {id:"p9",title:"畢氏定理挑戰",level:"國中",topic:"幾何",competition:"仿競賽題",difficulty:"進階",type:"仿競賽題",q:"直角三角形的斜邊長 13，一條直角邊長 5，另一條直角邊長多少？",options:["8","10","12","14"],correct:2,hint:"使用 a² + b² = c²。",steps:["設未知直角邊為 x。","x² + 5² = 13²。","x² = 169 − 25 = 144。","邊長為正，所以 x = 12。"],answer:"12",proof:"5² + 12² = 25 + 144 = 169 = 13²，因此符合畢氏定理。"},
+ {id:"p10",title:"整數解的限制",level:"高中",topic:"數論",competition:"仿奧林匹亞題型",difficulty:"進階",type:"仿競賽題",q:"若整數 n 的平方為奇數，以下哪項必定成立？",options:["n 是偶數","n 是奇數","n 是質數","n 為正數"],correct:1,hint:"證明反命題：若 n 是偶數，n² 會怎樣？",steps:["假設 n 是偶數，則 n = 2k，其中 k 是整數。","因此 n² = 4k² = 2(2k²)，是偶數。","這與 n² 為奇數矛盾。","所以 n 不可能是偶數，必定為奇數。"],answer:"n 是奇數",proof:"任一整數不是奇數就是偶數。若 n 為偶數，平方仍為偶數；所以平方為奇數時，原數必為奇數。"},
+ {id:"p11",title:"二次方程式根",level:"高中",topic:"代數",competition:"仿競賽題",difficulty:"基礎",type:"仿競賽題",q:"方程式 x² − 7x + 12 = 0 的兩根相加是多少？",options:["5","7","12","−7"],correct:1,hint:"可以因式分解，也可以使用根與係數關係。",steps:["將方程式因式分解：(x − 3)(x − 4) = 0。","兩根為 3 與 4。","兩根相加為 3 + 4 = 7。"],answer:"7",proof:"展開 (x − 3)(x − 4) 得 x² − 7x + 12，因此兩根為 3、4，根和為 7。"},
+ {id:"p12",title:"抽屜原理",level:"高中",topic:"組合",competition:"仿奧林匹亞題型",difficulty:"進階",type:"仿競賽題",q:"任取 13 個整數，必定有兩個數除以 12 的餘數相同。這個結論主要使用什麼原理？",options:["畢氏定理","抽屜原理","平方差公式","二項式定理"],correct:1,hint:"可能的餘數有幾種？",steps:["整數除以 12 的餘數只能是 0 到 11，共 12 種。","把每個整數依餘數分類，視為放入 12 個抽屜。","有 13 個整數卻只有 12 個抽屜。","依抽屜原理，至少有兩個整數落在同一個抽屜。"],answer:"抽屜原理",proof:"若每種餘數最多只出現一次，最多只能有 12 個整數。現在有 13 個，所以至少有兩個餘數相同。"},
+ {id:"p13",title:"平方和的下界",level:"高中",topic:"代數",competition:"仿奧林匹亞題型",difficulty:"進階",type:"仿競賽題",q:"對所有實數 x，x² − 6x + 10 的最小值是多少？",options:["0","1","−1","10"],correct:1,hint:"完成平方。",steps:["x² − 6x + 10 = (x − 3)² + 1。","任意實數的平方都大於或等於 0。","因此整個式子大於或等於 1。","當 x = 3 時取到 1，所以最小值是 1。"],answer:"1",proof:"因為 (x − 3)² ≥ 0，故 (x − 3)² + 1 ≥ 1；x = 3 時等號成立。"},
+ {id:"p14",title:"組合計數",level:"高中",topic:"組合",competition:"仿競賽題",difficulty:"基礎",type:"仿競賽題",q:"從 5 位學生中選出 2 位代表，不分先後，共有幾種選法？",options:["5","10","20","25"],correct:1,hint:"選 A、B 與選 B、A 是同一組。",steps:["先選第一人有 5 種，第二人有 4 種。","這樣計算會把每一組重複算兩次。","所以總數為 5 × 4 ÷ 2。","結果為 10 種。"],answer:"10 種",proof:"組合數為 C(5,2) = 5!/(2!3!) = 10。"},
+ {id:"p15",title:"模運算的觀察",level:"進階",topic:"數論",competition:"仿奧林匹亞題型",difficulty:"挑戰",type:"仿競賽題",q:"證明任意整數 n，n(n + 1) 一定是偶數。哪個理由最直接？",options:["兩數都是奇數","連續整數中至少有一個偶數","兩數相加是偶數","平方數總是偶數"],correct:1,hint:"考慮連續的兩個整數。",steps:["n 與 n + 1 是連續整數。","連續兩個整數中必有一個是偶數。","偶數乘以任何整數仍是偶數。","所以 n(n + 1) 必為偶數。"],answer:"連續整數中至少有一個偶數",proof:"若 n 為偶數，乘積顯然為偶數；若 n 為奇數，n+1 為偶數，乘積仍為偶數。"},
+ {id:"p16",title:"角度與對稱",level:"國中",topic:"幾何",competition:"仿競賽題",difficulty:"基礎",type:"仿競賽題",q:"等腰三角形的頂角為 40°，兩個底角各是多少？",options:["40°","60°","70°","80°"],correct:2,hint:"等腰三角形兩底角相等。",steps:["三角形內角和是 180°。","兩個底角的總和為 180° − 40° = 140°。","兩底角相等，所以各為 140° ÷ 2 = 70°。"],answer:"70°",proof:"40° + 70° + 70° = 180°，且兩底角相等。"},
+ {id:"p17",title:"機率與反面事件",level:"高中",topic:"機率",competition:"仿競賽題",difficulty:"基礎",type:"仿競賽題",q:"公平六面骰擲一次，至少擲出 5 點的機率是多少？",options:["1/6","1/3","1/2","2/3"],correct:1,hint:"有利結果是 5 或 6。",steps:["所有可能結果有 1、2、3、4、5、6，共 6 個。","符合至少 5 點的結果為 5、6，共 2 個。","機率 = 2/6 = 1/3。"],answer:"1/3",proof:"因為骰子公平，每個結果機率相同，所以機率為有利結果數除以總結果數，即 2/6 = 1/3。"},
+ {id:"p18",title:"一個簡單的不等式",level:"進階",topic:"代數",competition:"仿奧林匹亞題型",difficulty:"挑戰",type:"仿競賽題",q:"對所有正實數 a、b，以下哪個敘述一定成立？",options:["a+b < 2√ab","a+b ≥ 2√ab","a+b = √ab","ab ≥ a+b"],correct:1,hint:"從 (√a − √b)² ≥ 0 開始。",steps:["因為平方非負，(√a − √b)² ≥ 0。","展開得 a − 2√ab + b ≥ 0。","移項可得 a + b ≥ 2√ab。","當 a = b 時等號成立。"],answer:"a + b ≥ 2√ab",proof:"由 (√a − √b)² ≥ 0 展開並移項，即得算術幾何平均不等式的兩數形式。"}
+];
+
+/* 官方入口：連結到主辦單位提供的公開資源 */
+const officialSources = [
+ {name:"IMO 國際數學奧林匹亞",short:"IMO",level:"高中進階",desc:"歷屆證明題，涵蓋數論、幾何、代數與組合數學。",url:"https://www.imo-official.org/problems.aspx",label:"前往 IMO 官方題庫"},
+ {name:"AMC 美國數學競賽",short:"AMC",level:"國中至高中",desc:"AMC 8、AMC 10、AMC 12 等不同程度的數學挑戰。",url:"https://maa.org/math-competitions/",label:"前往 MAA 競賽網站"},
+ {name:"UKMT 英國數學挑戰賽",short:"UKMT",level:"國小至高中",desc:"多個年齡級別的選擇題與推理題。",url:"https://ukmt.org.uk/free-past-papers",label:"查看免費歷屆試題"},
+ {name:"Math Kangaroo 數學袋鼠",short:"KANGAROO",level:"國小至高中",desc:"圖形、邏輯、數感與多步驟問題。",url:"https://mathkangaroo.org/",label:"前往官方網站"}
+];
+
+/* =========================
+   共用工具與公式顯示
+   ========================= */
+const $ = id => document.getElementById(id);
+const escapeHTML = value => String(value).replace(/[&<>"']/g, ch => ({
+ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+}[ch]));
+let currentPill = "全部";
+let currentProblemId = null;
+let score = 0, attempts = 0, correct = 0;
+let quizQueue = [], quizIndex = 0, quizAnswered = false;
+let mental = null, mentalAnswered = false;
+
+function toast(message){
+ const el = $("toast");
+ el.textContent = message;
+ el.style.display = "block";
+ clearTimeout(toast.timer);
+ toast.timer = setTimeout(()=>el.style.display="none",2200);
+}
+function updateStats(){
+ $("correctTotal").textContent = correct;
+ $("attemptTotal").textContent = attempts;
+ $("accuracyTotal").textContent = attempts ? Math.round(correct/attempts*100)+"%" : "0%";
+ $("scoreDisplay").textContent = score;
+}
+function formulaCard(f){
+ return `<article class="card">
+  <div class="tags"><span class="tag purple">${escapeHTML(f.cat)}</span></div>
+  <h3>${escapeHTML(f.name)}</h3>
+  <div class="formula">${escapeHTML(f.formula)}</div>
+  <p>${escapeHTML(f.use)}</p>
+  <div class="push"><button class="btn" data-formula="${f.id}">查看推導與例題 →</button></div>
+ </article>`;
+}
+function renderFormulas(){
+ const q = $("formulaSearch").value.trim().toLowerCase();
+ const cat = $("formulaCategory").value;
+ const list = formulas.filter(f =>
+  (cat==="全部"||f.cat===cat) &&
+  [f.name,f.cat,f.formula,f.use,f.example,f.answer,f.proof.join(" ")].join(" ").toLowerCase().includes(q)
+ );
+ $("formulaCount").textContent = formulas.length;
+ $("formulaGrid").innerHTML = list.length ? list.map(formulaCard).join("") :
+  `<div class="empty">找不到符合條件的公式，試試其他關鍵字。</div>`;
+}
+function showFormula(id){
+ const f = formulas.find(x=>x.id===id);
+ if(!f)return;
+ const html = `<div class="section-head"><div><div class="eyebrow">FORMULA DETAIL</div><h2>${escapeHTML(f.name)}</h2></div><button class="btn" id="closeFormula">關閉</button></div>
+ <div class="formula">${escapeHTML(f.formula)}</div>
+ <p class="muted">${escapeHTML(f.use)}</p>
+ <h3>推導與證明</h3>
+ ${f.proof.map((s,i)=>`<div class="proof-step"><strong>步驟 ${i+1}</strong><br>${escapeHTML(s)}</div>`).join("")}
+ <div class="answer"><strong>例題：</strong>${escapeHTML(f.example)}<hr><strong>解答：</strong>${escapeHTML(f.answer)}</div>`;
+ const detail = $("problemDetail");
+ detail.classList.remove("hidden");
+ detail.innerHTML = html;
+ $("closeFormula").addEventListener("click",()=>detail.classList.add("hidden"));
+ detail.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+/* =========================
+   題庫顯示與逐步解析
+   ========================= */
+function problemCard(p){
+ return `<article class="card">
+  <div class="tags"><span class="tag">${escapeHTML(p.level)}</span><span class="tag purple">${escapeHTML(p.topic)}</span><span class="tag orange">${escapeHTML(p.difficulty)}</span></div>
+  <h3>${escapeHTML(p.title)}</h3>
+  <p>${escapeHTML(p.q)}</p>
+  <p class="small">題型：${escapeHTML(p.competition)} · ${escapeHTML(p.type)}</p>
+  <div class="push"><button class="btn" data-problem="${p.id}">查看解題步驟 →</button></div>
+ </article>`;
+}
+function renderProblems(){
+ const q = $("problemSearch").value.trim().toLowerCase();
+ const level = $("problemLevel").value, topic = $("problemTopic").value, source = $("problemSource").value;
+ const list = problems.filter(p =>
+  (level==="全部"||p.level===level) &&
+  (topic==="全部"||p.topic===topic) &&
+  (source==="全部"||p.type===source) &&
+  (currentPill==="全部"||p.topic===currentPill) &&
+  [p.title,p.q,p.topic,p.level,p.competition,p.hint,p.steps.join(" ")].join(" ").toLowerCase().includes(q)
+ );
+ $("problemCount").textContent = problems.length;
+ $("problemGrid").innerHTML = list.length ? list.map(problemCard).join("") :
+  `<div class="empty">目前沒有符合條件的題目。請調整篩選條件。</div>`;
+}
+function showProblem(id){
+ const p = problems.find(x=>x.id===id);
+ if(!p)return;
+ currentProblemId = id;
+ const d = $("problemDetail");
+ d.classList.remove("hidden");
+ d.innerHTML = `<div class="section-head"><div><div class="eyebrow">SOLUTION WALKTHROUGH</div><h2>${escapeHTML(p.title)}</h2></div><button class="btn" id="closeProblem">關閉</button></div>
+ <div class="tags"><span class="tag">${escapeHTML(p.level)}</span><span class="tag purple">${escapeHTML(p.topic)}</span><span class="tag orange">${escapeHTML(p.type)}</span></div>
+ <h3>題目</h3><p>${escapeHTML(p.q)}</p>
+ <details><summary>先看提示</summary><p>${escapeHTML(p.hint)}</p></details>
+ <h3 style="margin-top:20px">完整解題過程</h3>
+ ${p.steps.map((s,i)=>`<div class="proof-step"><strong>步驟 ${i+1}</strong><br>${escapeHTML(s)}</div>`).join("")}
+ <div class="answer"><strong>答案：</strong>${escapeHTML(p.answer)}<hr><strong>為什麼成立？</strong><p>${escapeHTML(p.proof)}</p></div>
+ <p class="small muted">本題為自編仿競賽題，不是主辦單位的官方歷屆原題。</p>
+ <button class="btn" id="practiceThis">在快問快答中練習</button>`;
+ $("closeProblem").addEventListener("click",()=>d.classList.add("hidden"));
+ $("practiceThis").addEventListener("click",()=>{
+  startQuiz(id);
+  $("games").scrollIntoView({behavior:"smooth"});
+ });
+ d.scrollIntoView({behavior:"smooth",block:"start"});
+}
+function renderOfficial(){
+ $("officialGrid").innerHTML = officialSources.map(s=>`<article class="card official">
+ <div class="tags"><span class="tag purple">${escapeHTML(s.short)}</span></div>
+ <h3>${escapeHTML(s.name)}</h3><p>${escapeHTML(s.desc)}</p>
+ <p class="small">適合程度：${escapeHTML(s.level)}</p>
+ <div class="push"><a class="btn" style="display:inline-block" href="${escapeHTML(s.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(s.label)} ↗</a></div>
+ </article>`).join("");
+}
+
+/* =========================
+   互動答題遊戲
+   ========================= */
+function shuffled(list){
+ const a = list.slice();
+ for(let i=a.length-1;i>0;i--){
+  const j=Math.floor(Math.random()*(i+1));
+  [a[i],a[j]]=[a[j],a[i]];
+ }
+ return a;
+}
+function startQuiz(preferredId){
+ quizQueue = preferredId ? [problems.find(p=>p.id===preferredId),...shuffled(problems.filter(p=>p.id!==preferredId))] : shuffled(problems);
+ quizIndex = 0;
+ showQuizQuestion();
+}
+function showQuizQuestion(){
+ const p = quizQueue[quizIndex];
+ if(!p)return;
+ quizAnswered = false;
+ $("quizProgress").textContent = `第 ${quizIndex+1} / ${quizQueue.length} 題 · ${p.level} · ${p.topic}`;
+ $("quizQuestion").textContent = p.q;
+ $("quizFeedback").textContent = "";
+ $("quizNext").classList.add("hidden");
+ $("quizOptions").innerHTML = p.options.map((op,i)=>`<button class="option" data-choice="${i}">${String.fromCharCode(65+i)}. ${escapeHTML(op)}</button>`).join("");
+}
+function answerQuiz(index){
+ if(quizAnswered)return;
+ quizAnswered = true;
+ attempts++;
+ const p = quizQueue[quizIndex];
+ const isCorrect = index === p.correct;
+ if(isCorrect){correct++;score+=10;}
+ updateStats();
+ [...$("quizOptions").querySelectorAll("button")].forEach((btn,i)=>{
+  btn.disabled=true;
+  if(i===p.correct)btn.classList.add("correct");
+  if(i===index&&!isCorrect)btn.classList.add("wrong");
+ });
+ $("quizFeedback").innerHTML = `<div class="answer"><strong>${isCorrect?"答對了！ +10 分":"再接再厲！"}</strong><p>${escapeHTML(p.hint)}</p><p><strong>解題步驟：</strong></p>${p.steps.map((s,i)=>`<div class="proof-step">${i+1}. ${escapeHTML(s)}</div>`).join("")}<p><strong>證明／驗算：</strong>${escapeHTML(p.proof)}</p><p><strong>答案：</strong>${escapeHTML(p.answer)}</p></div>`;
+ $("quizNext").classList.remove("hidden");
+}
+function nextQuiz(){
+ if(quizIndex+1>=quizQueue.length){
+  $("quizProgress").textContent="本輪完成";
+  $("quizQuestion").textContent="恭喜完成本輪挑戰！";
+  $("quizOptions").innerHTML="";
+  $("quizFeedback").innerHTML=`<div class="answer">本輪結束。累積答對 ${correct} 題，總分 ${score} 分。按下「再玩一輪」繼續練習。</div>`;
+  $("quizNext").textContent="再玩一輪 ↻";
+  $("quizNext").onclick=()=>{ $("quizNext").textContent="下一題 →";$("quizNext").onclick=nextQuiz;startQuiz();};
+  $("quizNext").classList.remove("hidden");
+  return;
+ }
+ quizIndex++;
+ showQuizQuestion();
+}
+
+/* =========================
+   心算遊戲
+   ========================= */
+function newMental(){
+ const kinds=["add","multiply","square","subtract"];
+ const kind=kinds[Math.floor(Math.random()*kinds.length)];
+ let a,b,question,answer;
+ if(kind==="add"){a=10+Math.floor(Math.random()*91);b=10+Math.floor(Math.random()*90);question=`${a} + ${b} = ?`;answer=a+b;}
+ else if(kind==="subtract"){a=50+Math.floor(Math.random()*100);b=Math.floor(Math.random()*a);question=`${a} − ${b} = ?`;answer=a-b;}
+ else if(kind==="multiply"){a=2+Math.floor(Math.random()*12);b=2+Math.floor(Math.random()*12);question=`${a} × ${b} = ?`;answer=a*b;}
+ else {a=2+Math.floor(Math.random()*20);question=`${a}² = ?`;answer=a*a;}
+ mental={question,answer};
+ mentalAnswered=false;
+ $("mentalQuestion").textContent=question;
+ $("mentalAnswer").value="";
+ $("mentalFeedback").textContent="";
+}
+function checkMental(){
+ if(!mental){newMental();return;}
+ if(mentalAnswered){toast("請按「出新題」繼續");return;}
+ const raw=$("mentalAnswer").value.trim();
+ if(raw===""){toast("請先輸入答案");return;}
+ attempts++;
+ const userAnswer=Number(raw);
+ const ok=Number.isFinite(userAnswer)&&userAnswer===mental.answer;
+ if(ok){correct++;score+=5;}
+ updateStats();
+ mentalAnswered=true;
+ $("mentalFeedback").innerHTML=ok
+  ? `<div class="answer">答對了！+5 分。答案是 ${mental.answer}。</div>`
+  : `<div class="answer">再試試不同的計算方法。正確答案是 ${mental.answer}。</div>`;
+}
+
+/* =========================
+   事件綁定
+   ========================= */
+$("formulaSearch").addEventListener("input",renderFormulas);
+$("formulaCategory").addEventListener("change",renderFormulas);
+["problemSearch","problemLevel","problemTopic","problemSource"].forEach(id=>{
+ $(id).addEventListener(id==="problemSearch"?"input":"change",renderProblems);
+});
+$("topicPills").addEventListener("click",e=>{
+ const b=e.target.closest("[data-topic]");
+ if(!b)return;
+ currentPill=b.dataset.topic;
+ document.querySelectorAll("#topicPills .pill").forEach(x=>x.classList.toggle("active",x===b));
+ $("problemTopic").value=currentPill;
+ renderProblems();
+});
+$("formulaGrid").addEventListener("click",e=>{
+ const b=e.target.closest("[data-formula]");
+ if(b)showFormula(b.dataset.formula);
+});
+$("problemGrid").addEventListener("click",e=>{
+ const b=e.target.closest("[data-problem]");
+ if(b)showProblem(b.dataset.problem);
+});
+$("quizStart").addEventListener("click",()=>startQuiz());
+$("quizNext").addEventListener("click",nextQuiz);
+$("quizOptions").addEventListener("click",e=>{
+ const b=e.target.closest("[data-choice]");
+ if(b)answerQuiz(Number(b.dataset.choice));
+});
+$("mentalNew").addEventListener("click",newMental);
+$("mentalCheck").addEventListener("click",checkMental);
+$("mentalAnswer").addEventListener("keydown",e=>{
+ if(e.key==="Enter")checkMental();
+});
+$("resetStats").addEventListener("click",()=>{
+ score=0;attempts=0;correct=0;updateStats();toast("學習紀錄已重設");
+});
+
+/* 初始畫面 */
+renderFormulas();
+renderProblems();
+renderOfficial();
+updateStats();
 </script>
 </body>
 </html>
