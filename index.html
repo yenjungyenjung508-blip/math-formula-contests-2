@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MathVerse｜數學宇宙</title>
+<style>
+:root{--bg:#101321;--panel:#191e32;--panel2:#202741;--ink:#f5f6ff;--muted:#a8b0ca;--purple:#a99bff;--cyan:#73e4df;--line:#343c58;--good:#8de0b0;--bad:#ffaaa8}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#30345c 0,transparent 40%),var(--bg);color:var(--ink);font-family:system-ui,"Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.7}button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1180px;width:calc(100% - 36px);margin:auto}
+header{height:76px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.logo{font-size:21px;font-weight:900;letter-spacing:-1px}.logo b{color:var(--cyan)}nav{display:flex;gap:20px}nav a{color:var(--muted);text-decoration:none;font-size:14px}nav a:hover{color:var(--cyan)}
+.hero{padding:55px 0 32px;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center}.eyebrow{font-size:12px;letter-spacing:2px;font-weight:800;color:var(--cyan)}h1{font-size:clamp(38px,6vw,68px);line-height:1.15;letter-spacing:-3px;margin:12px 0}h1 span{color:var(--purple)}.lead{color:var(--muted);max-width:620px}.hero-art{border:1px solid #484c77;background:linear-gradient(135deg,#282d4b,#171c31);border-radius:25px;padding:25px;min-height:210px;display:grid;place-items:center;overflow:hidden}.equation{font-size:clamp(28px,4vw,48px);color:var(--cyan);text-align:center;font-weight:800}.equation small{display:block;font-size:13px;color:var(--muted);font-weight:500;margin-top:12px}
+.searchbar{display:flex;gap:10px;margin-top:25px}.searchbar input{flex:1;min-width:0;background:var(--panel);color:var(--ink);border:1px solid var(--line);padding:14px 16px;border-radius:14px;outline:none}.searchbar input:focus{border-color:var(--cyan)}.btn{border:1px solid var(--line);border-radius:12px;background:var(--panel2);color:var(--ink);padding:10px 15px;font-weight:750}.btn.primary{background:var(--purple);color:#15152b;border-color:var(--purple)}.btn:hover{filter:brightness(1.12)}
+.quick{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.chip{background:#242a42;border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:6px 12px;font-size:12px}.chip:hover{color:var(--cyan);border-color:var(--cyan)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:15px auto 45px}.stat,.card{background:#191e32d9;border:1px solid var(--line);border-radius:18px;padding:18px}.stat strong{display:block;font-size:24px}.stat span{color:var(--muted);font-size:12px}
+section{scroll-margin-top:20px;margin:38px auto 55px}.heading{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:20px}.heading h2{font-size:30px;letter-spacing:-1px;margin:5px 0}.heading p{color:var(--muted);font-size:14px;margin:0}.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:17px}.filters .chip.active{background:var(--purple);border-color:var(--purple);color:#17162c}
+.formula-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.formula-card{background:var(--panel);border:1px solid var(--line);border-radius:19px;padding:19px;transition:.18s;display:flex;flex-direction:column;min-height:220px}.formula-card:hover{transform:translateY(-3px);border-color:#7770c2}.tag{font-size:11px;color:var(--cyan);font-weight:800}.formula-card h3{margin:9px 0;font-size:19px}.math{font-family:Georgia,"Times New Roman",serif;font-size:24px;color:var(--purple);background:#111629;border-radius:12px;padding:12px;text-align:center;margin:5px 0 12px;overflow-wrap:anywhere}.formula-card p{font-size:13px;color:var(--muted);margin:0 0 15px}.card-actions{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}.card-actions span{font-size:11px;color:var(--muted)}
+.detail{display:none;margin-top:18px;background:#151a2c;border:1px solid var(--line);border-radius:20px;padding:22px}.detail.open{display:block}.detail h3{margin-top:0}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.steps{padding-left:23px}.steps li{margin:10px 0;color:#d8dcf0}.example{background:#222944;border-radius:14px;padding:16px}.answer{color:var(--cyan);font-weight:800}.note{font-size:12px;color:var(--muted)}
+.game-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.game{background:linear-gradient(145deg,#202741,#171c30);border:1px solid var(--line);border-radius:21px;padding:23px}.game h3{margin:7px 0}.question{font-size:20px;font-weight:800;margin:18px 0}.options{display:grid;gap:9px}.option{background:#252c46;border:1px solid var(--line);border-radius:12px;color:var(--ink);padding:12px;text-align:left}.option:hover{border-color:var(--purple)}.option.correct{border-color:var(--good);background:#193b37}.option.wrong{border-color:var(--bad);background:#482832}.feedback{min-height:48px;font-size:13px;color:var(--muted);padding-top:9px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.score{font-size:13px;color:var(--muted)}
+.method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.method{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:18px}.method .icon{font-size:25px}.method h3{margin:8px 0}.method p{color:var(--muted);font-size:13px;margin:0}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;color:var(--muted);font-size:12px}
+@media(max-width:800px){.hero{grid-template-columns:1fr}.formula-grid{grid-template-columns:repeat(2,1fr)}.method-grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}nav{gap:10px}nav a{font-size:12px}}
+@media(max-width:540px){nav a:nth-child(2),nav a:nth-child(3){display:none}.formula-grid,.game-grid,.detail-grid{grid-template-columns:1fr}.heading{align-items:start;flex-direction:column}.searchbar{flex-direction:column}.method-grid{grid-template-columns:1fr 1fr}.hero{padding-top:35px}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:20px}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <a class="logo" href="#" style="color:inherit;text-decoration:none">✳ Math<b>Verse</b></a>
+  <nav><a href="#formulas">公式圖鑑</a><a href="#proof">證明方法</a><a href="#games">數學遊戲</a></nav>
+</header>
+<main>
+<div class="wrap hero">
+  <div>
+    <div class="eyebrow">LEARN · EXPLORE · MASTER</div>
+    <h1>讓數學公式<br>不再是<span>天書。</span></h1>
+    <p class="lead">搜尋公式、理解推導、練習例題。把抽象數學拆成清楚的小步驟，再用遊戲把它記起來。</p>
+    <div class="searchbar"><input id="search" placeholder="試試：畢氏定理、二次方程式、面積…" aria-label="搜尋公式"><button class="btn primary" id="searchBtn">搜尋公式 ↗</button></div>
+    <div class="quick"><button class="chip" data-q="畢氏">畢氏定理</button><button class="chip" data-q="二次">二次方程式</button><button class="chip" data-q="圓">圓的面積</button><button class="chip" data-q="機率">機率</button></div>
+  </div>
+  <div class="hero-art"><div class="equation">a² + b² = c²<small>一條公式，打開一個新世界。<br>探索數學背後的理由。</small><div style="font-size:13px;color:#b9b7ff;margin-top:24px">∑　√　π　∞　△</div></div></div>
+</div>
+<div class="wrap stats"><div class="stat"><strong id="total">0</strong><span>可查詢公式</span></div><div class="stat"><strong>4 種</strong><span>常見證明方法</span></div><div class="stat"><strong>即時</strong><span>例題與解答</span></div><div class="stat"><strong>闖關制</strong><span>練習你的數學直覺</span></div></div>
+
+<section class="wrap" id="formulas">
+  <div class="heading"><div><div class="eyebrow">01 / FORMULA LIBRARY</div><h2>公式探索圖鑑</h2><p>搜尋公式名稱、分類或用途，點開卡片查看例題與推導。</p></div></div>
+  <div class="filters" id="filters"></div>
+  <div class="formula-grid" id="formulaGrid"></div>
+  <div class="detail" id="detail"><div class="row"><div><div class="eyebrow">FORMULA DEEP DIVE</div><h2 id="detailTitle"></h2></div><button class="btn" id="closeDetail">關閉 ×</button></div><div class="math" id="detailMath"></div><p id="detailUse"></p><div class="detail-grid"><div><h3>🧠 推導／證明思路</h3><ol class="steps" id="detailSteps"></ol></div><div class="example"><h3>✏️ 例題練習</h3><p id="exampleQ"></p><button class="btn" id="showAnswer">顯示解答</button><p class="answer" id="exampleA" hidden></p><p class="note" id="exampleNote"></p></div></div></div>
+</section>
+
+<section class="wrap" id="proof">
+  <div class="heading"><div><div class="eyebrow">02 / HOW TO PROVE</div><h2>證明方法工具箱</h2><p>證明不是猜答案，而是把每個理由連接起來。</p></div></div>
+  <div class="method-grid">
+    <article class="method"><div class="icon">➡️</div><h3>直接證明</h3><p>從已知條件出發，依定義與定理一步步推到結論。</p></article>
+    <article class="method"><div class="icon">↩️</div><h3>反證法</h3><p>先假設結論不成立，再推出矛盾，證明原結論成立。</p></article>
+    <article class="method"><div class="icon">🧩</div><h3>數學歸納法</h3><p>先證明起始情況，再證明 n 成立會推出 n+1 成立。</p></article>
+    <article class="method"><div class="icon">📐</div><h3>幾何證明</h3><p>利用圖形性質、全等、相似或面積關係建立推理。</p></article>
+  </div>
+</section>
+
+<section class="wrap" id="games">
+  <div class="heading"><div><div class="eyebrow">03 / MATH ARCADE</div><h2>數學遊戲廳</h2><p>選答案、看解析、累積分數。答錯也能學會一個理由。</p></div></div>
+  <div class="game-grid">
+    <article class="game"><div class="eyebrow">GAME 01 · QUICK QUIZ</div><h3>公式快問快答</h3><div class="question" id="question"></div><div class="options" id="options"></div><div class="feedback" id="feedback" aria-live="polite"></div><div class="row"><span class="score" id="quizScore">答對 0 題</span><button class="btn primary" id="next">下一題 →</button></div></article>
+    <article class="game"><div class="eyebrow">GAME 02 · NUMBER QUEST</div><h3>心算挑戰</h3><p class="note">挑戰四則運算，答對得分，練習數字敏感度。</p><div class="question" id="mentalQ">12 × 8 = ?</div><div class="searchbar"><input id="mentalInput" type="number" placeholder="輸入答案"><button class="btn primary" id="checkMental">確認</button></div><div class="feedback" id="mentalFeedback"></div><div class="row"><span class="score" id="mentalScore">連續答對：0</span><button class="btn" id="newMental">換一題 ↻</button></div></article>
+  </div>
+</section>
+</main>
+<footer class="wrap">MathVerse · 數學宇宙｜此版本是可離線使用的入門示範，公式庫可以持續新增。正式學習與考試請核對課本、定義與適用條件。</footer>
+<script>
+const data=[
+{id:1,name:"畢氏定理",cat:"幾何",formula:"a² + b² = c²",desc:"直角三角形中，兩股長的平方和等於斜邊長的平方。",use:"適用於直角三角形；c 是斜邊，a、b 是兩股。",steps:["在直角三角形中，設兩股為 a、b，斜邊為 c。","把三邊分別作成正方形，其面積為 a²、b²、c²。","畢氏定理指出兩股上的正方形面積總和，等於斜邊上的正方形面積。","因此 a²+b²=c²。這裡展示的是定理結論與幾何直觀，完整證明可用拼圖面積法建立。"],q:"直角三角形的兩股長為 3 和 4，斜邊 c 是多少？",a:"c²=3²+4²=9+16=25，所以 c=5。",note:"長度取正值，因此答案是 5。"},
+{id:2,name:"二次方程式公式",cat:"代數",formula:"x = (−b ± √(b²−4ac)) / 2a",desc:"解 ax²+bx+c=0（a≠0）的通用公式。",use:"判別式 Δ=b²−4ac 可判斷實數根的數量。",steps:["從 ax²+bx+c=0 開始，且 a≠0。","兩邊除以 a，整理為 x²+(b/a)x=−c/a。","兩邊加上 (b/2a)²，完成平方。","整理為 (x+b/2a)²=(b²−4ac)/(4a²)。","開平方並移項，得到 x=(−b±√(b²−4ac))/(2a)。"],q:"解 x²−5x+6=0。",a:"a=1、b=−5、c=6。代入公式得 x=(5±√25−24)/2=(5±1)/2，所以 x=2 或 x=3。",note:"也可因式分解成 (x−2)(x−3)=0。"},
+{id:3,name:"圓的面積",cat:"幾何",formula:"A = πr²",desc:"半徑為 r 的圓，其面積等於 π 乘以半徑平方。",use:"r 是半徑，不是直徑；直徑 d=2r。",steps:["把圓切成許多細小扇形。","將扇形交錯排列，形狀逐漸接近平行四邊形。","底邊約為圓周的一半，即 πr；高約為 r。","面積約為底乘高，得到 πr×r=πr²。","扇形數量越多，近似越精確，極限即為圓面積公式。"],q:"半徑為 3 的圓，面積是多少？",a:"A=π×3²=9π，約為 28.27 平方單位。",note:"精確答案通常保留為 9π。"},
+{id:4,name:"長方形面積",cat:"幾何",formula:"A = 長 × 寬",desc:"長方形面積等於長邊與寬邊的乘積。",use:"長與寬須使用相同長度單位，面積單位要平方。",steps:["把長方形切成邊長為 1 的單位正方形。","每一排有「長」個單位正方形。","共有「寬」排。","總數為長×寬，因此 A=長×寬。"],q:"長 8 公分、寬 5 公分的長方形面積是多少？",a:"A=8×5=40 平方公分。",note:"周長是 2×(8+5)=26 公分，別和面積混淆。"},
+{id:5,name:"三角形面積",cat:"幾何",formula:"A = ½bh",desc:"底為 b、高為 h 的三角形，面積是底乘高的一半。",use:"高必須是到底邊的垂直距離。",steps:["取一個三角形，複製一個全等三角形。","將兩個三角形拼成底為 b、高為 h 的平行四邊形。","平行四邊形面積是 bh。","一個三角形占其中一半，所以 A=½bh。"],q:"底 10、高 6 的三角形面積是多少？",a:"A=½×10×6=30 平方單位。",note:"鈍角三角形的高可能落在底邊延長線上。"},
+{id:6,name:"一次函數",cat:"代數",formula:"y = mx + b",desc:"斜率為 m、y 截距為 b 的直線方程式。",use:"m 表示 x 每增加 1 時，y 的變化量；b 是 x=0 時的 y 值。",steps:["直線上兩點的斜率為 m=(y₂−y₁)/(x₂−x₁)。","直線的變化率固定，因此 y−y₁=m(x−x₁)。","展開並把常數合併，寫成 y=mx+b。"],q:"直線斜率為 2，且 y 截距為 3，寫出方程式。",a:"代入 y=mx+b，得到 y=2x+3。",note:"x 增加 1，y 就增加 2。"},
+{id:7,name:"平方差公式",cat:"代數",formula:"a² − b² = (a−b)(a+b)",desc:"兩個平方相減，可以分解成差與和的乘積。",use:"常用於因式分解、簡化算式。",steps:["展開右邊：(a−b)(a+b)。","使用分配律得到 a²+ab−ab−b²。","中間的 +ab 與 −ab 抵消。","結果是 a²−b²，因此等式成立。"],q:"分解 x²−25。",a:"x²−25=x²−5²=(x−5)(x+5)。",note:"平方和 a²+b² 通常不能在實數範圍內照此方式分解。"},
+{id:8,name:"等差數列第 n 項",cat:"數列",formula:"aₙ = a₁ + (n−1)d",desc:"每一項與前一項的差固定時，就是等差數列。",use:"a₁ 為首項，d 為公差，n 為項數。",steps:["第一項是 a₁。","第二項是 a₁+d；第三項是 a₁+2d。","每往後一項，就多加一次公差 d。","第 n 項在首項之後經過 n−1 次增加，所以 aₙ=a₁+(n−1)d。"],q:"首項 4、公差 3，第 10 項是多少？",a:"a₁₀=4+(10−1)×3=4+27=31。",note:"注意是 n−1 次，不是 n 次。"},
+{id:9,name:"等差級數和",cat:"數列",formula:"Sₙ = n(a₁+aₙ)/2",desc:"等差數列前 n 項的總和。",use:"已知首項、末項與項數時特別方便。",steps:["把總和正向寫成 S=a₁+a₂+…+aₙ。","反向寫成 S=aₙ+aₙ₋₁+…+a₁。","兩式相加，每一對都是 a₁+aₙ，共 n 對。","因此 2S=n(a₁+aₙ)，除以 2 得公式。"],q:"1+2+3+…+100 等於多少？",a:"S=100(1+100)/2=100×101/2=5050。",note:"這種配對方法也常用來理解高斯求和。"},
+{id:10,name:"機率",cat:"機率",formula:"P(A)=有利結果數／所有等可能結果數",desc:"當所有結果等可能時，以有利結果比例計算事件機率。",use:"此公式需要所有基本結果等可能；不等可能時需用其他方法。",steps:["列出所有可能的基本結果。","確認每個基本結果是否等可能。","數出符合事件 A 的結果數。","用有利結果數除以總結果數。"],q:"公平六面骰擲一次，擲出偶數的機率是多少？",a:"偶數是 2、4、6，共 3 個有利結果；總結果 6 個，所以 P=3/6=1/2。",note:"機率介於 0 與 1 之間。"},
+{id:11,name:"平均速度",cat:"生活數學",formula:"平均速度 = 總路程／總時間",desc:"整段行程的平均速度要用總路程除以總時間。",use:"單位例如公里／小時或公尺／秒。",steps:["把每段路程加起來，得到總路程。","把每段花費時間加起來，得到總時間。","用總路程除以總時間。","不能在不同路段速度不同時，直接對速度做普通平均。"],q:"走 12 公里花了 3 小時，平均速度是多少？",a:"平均速度=12÷3=4 公里／小時。",note:"請確認時間與距離單位一致。"},
+{id:12,name:"百分率",cat:"生活數學",formula:"百分率 = 部分／全體 × 100%",desc:"將部分占全體的比例轉成百分比。",use:"計算折扣、成績、成長率時常用。",steps:["找出部分與全體的數值。","用部分除以全體得到比例。","乘以 100%，換成百分率。"],q:"20 題答對 17 題，答對率是多少？",a:"17÷20×100%=85%。",note:"全體不能為 0。"}
+];
+const categories=["全部","代數","幾何","數列","機率","生活數學"];
+let active="全部",current=null,quizIndex=0,score=0,locked=false,streak=0,mentalAnswer=0;
+const $=id=>document.getElementById(id);
+$("total").textContent=data.length;
+function renderFilters(){$("filters").innerHTML=categories.map(c=>`<button class="chip ${c===active?"active":""}" data-cat="${c}">${c}</button>`).join("")}
+function renderCards(){const term=$("search").value.trim().toLowerCase();const found=data.filter(d=>(active==="全部"||d.cat===active)&&[d.name,d.cat,d.formula,d.desc,d.use].join(" ").toLowerCase().includes(term));$("formulaGrid").innerHTML=found.length?found.map(d=>`<article class="formula-card"><div class="tag">${d.cat.toUpperCase()} / FORMULA</div><h3>${d.name}</h3><div class="math">${d.formula}</div><p>${d.desc}</p><div class="card-actions"><span>含推導與例題</span><button class="btn" data-open="${d.id}">深入學習 ↗</button></div></article>`).join(""):`<div class="card" style="grid-column:1/-1">找不到相關公式。試試「面積」、「代數」或「數列」。</div>`}
+function openDetail(id){current=data.find(d=>d.id===id);$("detailTitle").textContent=current.name;$("detailMath").textContent=current.formula;$("detailUse").textContent="適用情境："+current.use;$("detailSteps").innerHTML=current.steps.map(s=>`<li>${s}</li>`).join("");$("exampleQ").textContent=current.q;$("exampleA").textContent=current.a;$("exampleA").hidden=true;$("showAnswer").textContent="顯示解答";$("exampleNote").textContent=current.note;$("detail").classList.add("open");$("detail").scrollIntoView({behavior:"smooth",block:"start"})}
+$("filters").addEventListener("click",e=>{const b=e.target.closest("[data-cat]");if(!b)return;active=b.dataset.cat;renderFilters();renderCards()});
+$("formulaGrid").addEventListener("click",e=>{const b=e.target.closest("[data-open]");if(b)openDetail(Number(b.dataset.open))});
+$("search").addEventListener("input",renderCards);$("searchBtn").onclick=renderCards;
+document.querySelectorAll("[data-q]").forEach(b=>b.onclick=()=>{$("search").value=b.dataset.q;active="全部";renderFilters();renderCards();$("formulas").scrollIntoView({behavior:"smooth"})});
+$("closeDetail").onclick=()=>$("detail").classList.remove("open");
+$("showAnswer").onclick=()=>{$("exampleA").hidden=!$("exampleA").hidden;$("showAnswer").textContent=$("exampleA").hidden?"顯示解答":"收起解答"};
+
+const quiz=[
+{q:"直角三角形兩股長為 6、8，斜邊長是多少？",o:["10","12","14","100"],a:0,why:"6²+8²=36+64=100，所以斜邊是 √100=10。"},
+{q:"圓的半徑是 4，面積為何？",o:["8π","16π","4π","16"],a:1,why:"A=πr²=π×4²=16π。"},
+{q:"x²−9 的因式分解是哪一個？",o:["(x−9)(x+1)","(x−3)²","(x−3)(x+3)","(x+9)(x−1)"],a:2,why:"這是平方差公式：x²−3²=(x−3)(x+3)。"},
+{q:"首項 2、公差 5，等差數列第 4 項是多少？",o:["12","17","22","7"],a:1,why:"a₄=2+(4−1)×5=17。"},
+{q:"公平骰子擲一次，擲出 6 的機率是多少？",o:["1/2","1/3","1/6","6"],a:2,why:"六個等可能結果中只有一個是 6，所以機率為 1/6。"},
+{q:"三角形底 12、高 5，面積是多少？",o:["60","30","17","34"],a:1,why:"A=½×12×5=30。"}
+];
+function renderQuiz(){locked=false;const q=quiz[quizIndex];$("question").textContent=q.q;$("options").innerHTML=q.o.map((o,i)=>`<button class="option" data-answer="${i}">${"ABCD"[i]}　${o}</button>`).join("");$("feedback").textContent="選擇一個答案，查看推理。";$("quizScore").textContent=`答對 ${score} 題`}
+$("options").addEventListener("click",e=>{const b=e.target.closest("[data-answer]");if(!b||locked)return;locked=true;const i=Number(b.dataset.answer),q=quiz[quizIndex];document.querySelectorAll("[data-answer]").forEach((x,j)=>{x.disabled=true;if(j===q.a)x.classList.add("correct");else if(j===i)x.classList.add("wrong")});if(i===q.a){score++;$("feedback").textContent="答對了！"+q.why}else $("feedback").textContent="再看一次解析："+q.why;$("quizScore").textContent=`答對 ${score} 題`});
+$("next").onclick=()=>{if(!locked){$("feedback").textContent="先選一個答案再繼續！";return}quizIndex=(quizIndex+1)%quiz.length;if(quizIndex===0)score=0;renderQuiz()};
+function newMental(){const ops=["+","−","×"];const op=ops[Math.floor(Math.random()*ops.length)];let a,b;if(op==="+"){a=rand(10,80);b=rand(1,50);mentalAnswer=a+b}else if(op==="−"){a=rand(20,90);b=rand(1,a);mentalAnswer=a-b}else{a=rand(2,12);b=rand(2,12);mentalAnswer=a*b}$("mentalQ").textContent=`${a} ${op} ${b} = ?`;$("mentalInput").value="";$("mentalFeedback").textContent="";$("mentalInput").focus()}
+function rand(a,b){return Math.floor(Math.random()*(b-a+1))+a}
+function checkMental(){if($("mentalInput").value===""){$("mentalFeedback").textContent="先輸入答案吧！";return}if(Number($("mentalInput").value)===mentalAnswer){streak++;$("mentalFeedback").textContent="正確！反應很棒 ✨"}else{streak=0;$("mentalFeedback").textContent=`再試著檢查運算。正確答案是 ${mentalAnswer}。`}$("mentalScore").textContent=`連續答對：${streak}`;newMental()}
+$("checkMental").onclick=checkMental;$("mentalInput").addEventListener("keydown",e=>{if(e.key==="Enter")checkMental()});$("newMental").onclick=newMental;
+renderFilters();renderCards();renderQuiz();newMental();
+</script>
+</body>
+</html>
